@@ -54,6 +54,23 @@ useEffect(() => {
 
 
 
+const sendMail = (e) => {
+  e.preventDefault();
+  axios.post('https://crudserver.ministerwtf.repl.co/sendmail', user).then((res) => {
+    console.log(res.data);
+}).catch((err) => {
+  console.log(err);
+});
+}
+const sendMailSpecific=(record)=>{
+  // e.preventDefault();
+  const data= [record];
+  axios.post(`https://crudserver.ministerwtf.repl.co/sendmail/`, data).then((res) => {
+    console.log(res.data);
+}).catch((err) => {
+  console.log(err);
+});
+}
 
 
 
@@ -99,7 +116,7 @@ const columns = [
   {
     title: 'Action',
     key: 'action',
-    render: (_,record) => (
+    render: (idx,record) => (
       <Space size="middle">
        <Button type='primary' className='text-black bg-yellow-300 hover:bg-yellow-700'
         onClick={()=>{
@@ -125,7 +142,9 @@ const columns = [
 
 
      >delete</Button>
-      
+      <Button onClick={()=>sendMailSpecific(record)}>
+        send
+      </Button>
       </Space>
     ),
   },
@@ -158,10 +177,13 @@ const columns = [
       <EditModal openEdit={EditOpen} setEditOpen={setEditOpen} userEdit={userEdit} user={user} setUser={setUser}/>
    <Layout>
      
-     <Header><a href={`mailto:info@redpositive.in?subject='alldata'&body=${user.map(data=>{
-      return `\n Name: ${data.name} Phone: ${data.phone} Email: ${data.email} Hobbies: ${data.hobbies} \n`
-
-     })}` }className='text-white'>Click to Send an Email</a></Header>
+     <Header>
+        <div className='flex justify-between items-center'>
+          <div className='flex items-center'>
+          <button className='text-2xl font-bold text-white' onClick={sendMail}>send all data</button>
+          </div>
+          </div>
+     </Header>
      <Content>
  
  <div className='w-full flex items-end p-2'><Button onClick={showModal}><PlusCircleOutlined /></Button></div>
