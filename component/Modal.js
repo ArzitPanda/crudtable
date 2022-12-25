@@ -19,7 +19,7 @@ const ModalCustom = ({open,setOpen,user,setUser}) => {
   
     setConfirmLoading(true);
 
-        axios.post('http://crudserver.ministerwtf.repl.co', {
+        axios.post('https://crudserver.ministerwtf.repl.co', {
             name:name,
             email:email,
             phone:number,

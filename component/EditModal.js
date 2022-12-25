@@ -24,7 +24,7 @@ useEffect(()=>{
 
 
 
-axios.get(`http://crudserver.ministerwtf.repl.co/${userEdit._id}`).then((res) => {
+axios.get(`https://crudserver.ministerwtf.repl.co/${userEdit._id}`).then((res) => {
     console.log(res.data);
     setName(res.data.name);
     setEmail(res.data.email);

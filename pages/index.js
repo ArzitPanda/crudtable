@@ -21,7 +21,7 @@ const [userEdit,setUserEdit]=useState({});
 
 useEffect(() => {
   
-  axios.get('http://crudserver.ministerwtf.repl.co').then((res) => {
+  axios.get('https://crudserver.ministerwtf.repl.co').then((res) => {
    setUser(res.data);
    console.log(res.data);
 }).catch((err) => {
@@ -112,7 +112,7 @@ const columns = [
        >edit</Button>
        <Button type='dashed' onClick={()=>{
 
-        axios.delete(`http://crudserver.ministerwtf.repl.co/${record._id}`).then((res) => {
+        axios.delete(`https://crudserver.ministerwtf.repl.co/${record._id}`).then((res) => {
           console.log(res.data);  
       }).catch((err) => {
         console.log(err);
